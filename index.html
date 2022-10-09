@@ -140,10 +140,10 @@
    var brd = document.createElement("DIV");
    		document.body.insertBefore(brd, document.getElementById("board"));
    
-   		const duration = 3000;
-   		const speed = 0.4;
+   		const duration = 4000;
+   		const speed = 0.8;
    		const cursorXOffset = 0;
-   		const cursorYOffset = 0;
+   		const cursorYOffset = 30;
    
    		var hearts = [];
    		
@@ -198,7 +198,7 @@
    
    		var before = Date.now();
    		var id = setInterval(frame, 5);
-   		var gr = setInterval(check, 100);
+   		var gr = setInterval(check, 200);
    
    		function frame()
    		{
