@@ -1,246 +1,236 @@
 <style>
-body	{
-.not-selectable {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-text-align: center;
-  background: #ffceed;
-  font-family: sans-serif;
-  font-weight: 100;
-			background-color : #ffceed;
-		}
-		@keyframes heartfade {
-			0% {
-				opacity : 1;
-			}
-			50% {
-				opacity : 0;
-			}
-		}
-		.heart {
-			z-index : 999;
-			animation : heartfade 6s linear;
-			position : absolute; 
-		}
-		.heart:before,
-		.heart:after {
-			content : "";
-			background-color : #fc2a62;
-			position : absolute;
-			height : 30px;
-			width : 45px;
-			border-radius : 15px 0px 0px 15px;
-		}
-
-		.heart:before {
-			transform : rotate(45deg);
-		}
-
-		.heart:after {
-			left : 10.5px;
-			transform : rotate(135deg);
-		}
- 
-.countdown-title {
-  color: #fc2a62ad;
-  font-weight: 100;
-  font-size: 40px;
-  margin: 40px 0px 20px;
-}
- 
-.countdown {
-  font-family: sans-serif;
-  color: #fff;
-  display: inline-block;
-  font-weight: 100;
-  text-align: center;
-  font-size: 30px;
-}
- 
-.countdown-number {
-  padding: 10px;
-  border-radius: 3px;
-  background: #22222222;
-  display: inline-block;
-}
- 
-.countdown-time {
-  padding: 15px;
-  border-radius: 3px;
-  background: #22222222;
-  display: inline-block;
-}
- 
-.countdown-text {
-  display: block;
-  padding-top: 5px;
-  font-size: 16px;
-}
+   .not-selectable {
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   }
+   body	{
+   text-align: center;
+   background: #ffceed;
+   font-family: sans-serif;
+   font-weight: 100;
+   background-color : #ffceed;
+   }
+   @keyframes heartfade {
+   0% {
+   opacity : 1;
+   }
+   50% {
+   opacity : 0;
+   }
+   }
+   .heart {
+   z-index : 999;
+   animation : heartfade 6s linear;
+   position : absolute; 
+   }
+   .heart:before,
+   .heart:after {
+   content : "";
+   background-color : #fc2a62;
+   position : absolute;
+   height : 30px;
+   width : 45px;
+   border-radius : 15px 0px 0px 15px;
+   }
+   .heart:before {
+   transform : rotate(45deg);
+   }
+   .heart:after {
+   left : 10.5px;
+   transform : rotate(135deg);
+   }
+   .countdown-title {
+   color: #fc2a62ad;
+   font-weight: 100;
+   font-size: 40px;
+   margin: 40px 0px 20px;
+   }
+   .countdown {
+   font-family: sans-serif;
+   color: #fff;
+   display: inline-block;
+   font-weight: 100;
+   text-align: center;
+   font-size: 30px;
+   }
+   .countdown-number {
+   padding: 10px;
+   border-radius: 3px;
+   background: #22222222;
+   display: inline-block;
+   }
+   .countdown-time {
+   padding: 15px;
+   border-radius: 3px;
+   background: #22222222;
+   display: inline-block;
+   }
+   .countdown-text {
+   display: block;
+   padding-top: 5px;
+   font-size: 16px;
+   }
 </style>
-
 <h1 class="countdown-title not-selectable">До встречи осталось</h1>
 <div id="countdown" class="countdown">
-  <div class="countdown-number">
-    <span class="days countdown-time not-selectable"></span>
-    <span class="countdown-text not-selectable">Дней</span>
-  </div>
-  <div class="countdown-number">
-    <span class="hours countdown-time not-selectable"></span>
-    <span class="countdown-text not-selectable">Часов</span>
-  </div>
-  <div class="countdown-number">
-    <span class="minutes countdown-time not-selectable"></span>
-    <span class="countdown-text not-selectable">Минут</span>
-  </div>
-  <div class="countdown-number">
-    <span class="seconds countdown-time not-selectable"></span>
-    <span class="countdown-text not-selectable">Секунд</span>
-  </div>
+   <div class="countdown-number">
+      <span class="days countdown-time not-selectable"></span>
+      <span class="countdown-text not-selectable">Дней</span>
+   </div>
+   <div class="countdown-number">
+      <span class="hours countdown-time not-selectable"></span>
+      <span class="countdown-text not-selectable">Часов</span>
+   </div>
+   <div class="countdown-number">
+      <span class="minutes countdown-time not-selectable"></span>
+      <span class="countdown-text not-selectable">Минут</span>
+   </div>
+   <div class="countdown-number">
+      <span class="seconds countdown-time not-selectable"></span>
+      <span class="countdown-text not-selectable">Секунд</span>
+   </div>
 </div>
-
 <script>
-function getTimeRemaining(endtime) {
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  var seconds = Math.floor((t / 1000) % 60);
-  var minutes = Math.floor((t / 1000 / 60) % 60);
-  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-  var days = Math.floor(t / (1000 * 60 * 60 * 24));
-  return {
-    'total': t,
-    'days': days,
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
-  };
-}
- 
-function initializeClock(id, endtime) {
-  var clock = document.getElementById(id);
-  var daysSpan = clock.querySelector('.days');
-  var hoursSpan = clock.querySelector('.hours');
-  var minutesSpan = clock.querySelector('.minutes');
-  var secondsSpan = clock.querySelector('.seconds');
- 
-  function updateClock() {
-    var t = getTimeRemaining(endtime);
- 
-    daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
- 
-    if (t.total <= 0) {
-      clearInterval(timeinterval);
-    }
-  }
- 
-  updateClock();
-  var timeinterval = setInterval(updateClock, 1000);
-}
- 
-var deadline="November 04 2022 18:20:00 GMT+0600";
-initializeClock('countdown', deadline);
-
-var brd = document.createElement("DIV");
-		document.body.insertBefore(brd, document.getElementById("board"));
-
-		const duration = 3000;
-		const speed = 0.5;
-		const cursorXOffset = 0;
-		const cursorYOffset = -5;
-
-		var hearts = [];
-		
-		function generateHeart(x, y, xBound, xStart, scale)
-		{
-			var heart = document.createElement("DIV");
-			heart.setAttribute('class', 'heart');
-			brd.appendChild(heart);
-			heart.time = duration;
-			heart.x = x;
-			heart.y = y;
-			heart.bound = xBound;
-			heart.direction = xStart;
-			heart.style.left = heart.x + "px";
-			heart.style.top = heart.y + "px";
-			heart.scale = scale;
-			heart.style.transform = "scale(" + scale + "," + scale + ")";
-			if(hearts == null)
-				hearts = [];
-			hearts.push(heart);
-			return heart;
-		}
-
-		var down = false;
-		var event = null;
-
-		document.onmousedown = function(e) {
-			down = true;
-			event = e;
-		}
-
-		document.onmouseup = function(e) {
-			down = false;
-		}
-
-		document.onmousemove = function(e) {
-			event = e;
-		}
-
-		document.ontouchstart = function(e) {
-			down = true;
-			event = e.touches[0];
-		}
-
-		document.ontouchend = function(e) {
-			down = false;
-		}
-
-		document.ontouchmove = function(e) {
-			event = e.touches[0];
-		}
-
-		var before = Date.now();
-		var id = setInterval(frame, 5);
-		var gr = setInterval(check, 100);
-
-		function frame()
-		{
-			var current = Date.now();
-			var deltaTime = current - before;
-			before = current;
-			for(i in hearts)
-			{
-				var heart = hearts[i];
-				heart.time -= deltaTime;
-				if(heart.time > 0)
-				{
-					heart.y -= speed;
-					heart.style.top = heart.y + "px";
-					heart.style.left = heart.x + heart.direction * heart.bound * Math.sin(heart.y * heart.scale / 30) / heart.y * 200 + "px";
-				}
-				else
-				{
-					heart.parentNode.removeChild(heart);
-					hearts.splice(i, 1);
-				}
-			}
-		}
-
-		function check()
-		{
-			if(down)
-			{
-				var start = 1 - Math.round(Math.random()) * 2;
-				var scale = Math.random() * Math.random() * 0.8 + 0.2;
-				var bound = 30 + Math.random() * 20;
-				generateHeart(event.pageX - brd.offsetLeft + cursorXOffset, event.pageY - brd.offsetTop + cursorYOffset, bound, start, scale);
-			}
-		}
+   function getTimeRemaining(endtime) {
+     var t = Date.parse(endtime) - Date.parse(new Date());
+     var seconds = Math.floor((t / 1000) % 60);
+     var minutes = Math.floor((t / 1000 / 60) % 60);
+     var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+     var days = Math.floor(t / (1000 * 60 * 60 * 24));
+     return {
+       'total': t,
+       'days': days,
+       'hours': hours,
+       'minutes': minutes,
+       'seconds': seconds
+     };
+   }
+    
+   function initializeClock(id, endtime) {
+     var clock = document.getElementById(id);
+     var daysSpan = clock.querySelector('.days');
+     var hoursSpan = clock.querySelector('.hours');
+     var minutesSpan = clock.querySelector('.minutes');
+     var secondsSpan = clock.querySelector('.seconds');
+    
+     function updateClock() {
+       var t = getTimeRemaining(endtime);
+    
+       daysSpan.innerHTML = t.days;
+       hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+       minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+       secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    
+       if (t.total <= 0) {
+         clearInterval(timeinterval);
+       }
+     }
+    
+     updateClock();
+     var timeinterval = setInterval(updateClock, 1000);
+   }
+    
+   var deadline="November 04 2022 18:20:00 GMT+0600";
+   initializeClock('countdown', deadline);
+   
+   var brd = document.createElement("DIV");
+   		document.body.insertBefore(brd, document.getElementById("board"));
+   
+   		const duration = 3000;
+   		const speed = 0.5;
+   		const cursorXOffset = 0;
+   		const cursorYOffset = -5;
+   
+   		var hearts = [];
+   		
+   		function generateHeart(x, y, xBound, xStart, scale)
+   		{
+   			var heart = document.createElement("DIV");
+   			heart.setAttribute('class', 'heart');
+   			brd.appendChild(heart);
+   			heart.time = duration;
+   			heart.x = x;
+   			heart.y = y;
+   			heart.bound = xBound;
+   			heart.direction = xStart;
+   			heart.style.left = heart.x + "px";
+   			heart.style.top = heart.y + "px";
+   			heart.scale = scale;
+   			heart.style.transform = "scale(" + scale + "," + scale + ")";
+   			if(hearts == null)
+   				hearts = [];
+   			hearts.push(heart);
+   			return heart;
+   		}
+   
+   		var down = false;
+   		var event = null;
+   
+   		document.onmousedown = function(e) {
+   			down = true;
+   			event = e;
+   		}
+   
+   		document.onmouseup = function(e) {
+   			down = false;
+   		}
+   
+   		document.onmousemove = function(e) {
+   			event = e;
+   		}
+   
+   		document.ontouchstart = function(e) {
+   			down = true;
+   			event = e.touches[0];
+   		}
+   
+   		document.ontouchend = function(e) {
+   			down = false;
+   		}
+   
+   		document.ontouchmove = function(e) {
+   			event = e.touches[0];
+   		}
+   
+   		var before = Date.now();
+   		var id = setInterval(frame, 5);
+   		var gr = setInterval(check, 100);
+   
+   		function frame()
+   		{
+   			var current = Date.now();
+   			var deltaTime = current - before;
+   			before = current;
+   			for(i in hearts)
+   			{
+   				var heart = hearts[i];
+   				heart.time -= deltaTime;
+   				if(heart.time > 0)
+   				{
+   					heart.y -= speed;
+   					heart.style.top = heart.y + "px";
+   					heart.style.left = heart.x + heart.direction * heart.bound * Math.sin(heart.y * heart.scale / 30) / heart.y * 200 + "px";
+   				}
+   				else
+   				{
+   					heart.parentNode.removeChild(heart);
+   					hearts.splice(i, 1);
+   				}
+   			}
+   		}
+   
+   		function check()
+   		{
+   			if(down)
+   			{
+   				var start = 1 - Math.round(Math.random()) * 2;
+   				var scale = Math.random() * Math.random() * 0.8 + 0.2;
+   				var bound = 30 + Math.random() * 20;
+   				generateHeart(event.pageX - brd.offsetLeft + cursorXOffset, event.pageY - brd.offsetTop + cursorYOffset, bound, start, scale);
+   			}
+   		}
 </script>
