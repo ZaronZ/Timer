@@ -141,9 +141,9 @@
    		document.body.insertBefore(brd, document.getElementById("board"));
    
    		const duration = 3000;
-   		const speed = 0.5;
+   		const speed = 0.4;
    		const cursorXOffset = 0;
-   		const cursorYOffset = -5;
+   		const cursorYOffset = 0;
    
    		var hearts = [];
    		
@@ -228,7 +228,7 @@
    			if(down)
    			{
    				var start = 1 - Math.round(Math.random()) * 2;
-   				var scale = Math.random() * Math.random() * 0.8 + 0.2;
+   				var scale = Math.random() * Math.random() * 0.8 + 1.2;
    				var bound = 30 + Math.random() * 20;
    				generateHeart(event.pageX - brd.offsetLeft + cursorXOffset, event.pageY - brd.offsetTop + cursorYOffset, bound, start, scale);
    			}
