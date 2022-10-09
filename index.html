@@ -1,5 +1,14 @@
 <style>
 body	{
+.not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 text-align: center;
   background: #ffceed;
   font-family: sans-serif;
@@ -75,23 +84,23 @@ text-align: center;
 }
 </style>
 
-<h1 class="countdown-title">До встречи осталось</h1>
+<h1 class="countdown-title not-selectable">До встречи осталось</h1>
 <div id="countdown" class="countdown">
   <div class="countdown-number">
-    <span class="days countdown-time"></span>
-    <span class="countdown-text">Дней</span>
+    <span class="days countdown-time not-selectable"></span>
+    <span class="countdown-text not-selectable">Дней</span>
   </div>
   <div class="countdown-number">
-    <span class="hours countdown-time"></span>
-    <span class="countdown-text">Часов</span>
+    <span class="hours countdown-time not-selectable"></span>
+    <span class="countdown-text not-selectable">Часов</span>
   </div>
   <div class="countdown-number">
-    <span class="minutes countdown-time"></span>
-    <span class="countdown-text">Минут</span>
+    <span class="minutes countdown-time not-selectable"></span>
+    <span class="countdown-text not-selectable">Минут</span>
   </div>
   <div class="countdown-number">
-    <span class="seconds countdown-time"></span>
-    <span class="countdown-text">Секунд</span>
+    <span class="seconds countdown-time not-selectable"></span>
+    <span class="countdown-text not-selectable">Секунд</span>
   </div>
 </div>
 
